@@ -13,7 +13,7 @@ import (
 	"net/http"
 	"os"
 
-	sw "github.com/marcoc22/sistemasdistribuidos/go"
+	sw "github.com/marcoc22/sistemasdistribuidos/tarea3/go"
 )
 
 func main() {
