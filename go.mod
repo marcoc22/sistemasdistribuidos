@@ -1,4 +1,4 @@
-module github.com/marcoc22/sistemasdistribuidos
+module github.com/marcoc22/sistemasdistribuidos/tarea3
 
 go 1.12
 
