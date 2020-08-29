@@ -71,6 +71,134 @@ paths:
       responses:
         "200":
           description: OK
+  /authors/{authorId}:
+    get:
+      summary: Returns a author by ID.
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+    put:
+      summary: Update author information
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: author data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Delete a author by ID.
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /authors/:
+    post:
+      summary: Create a new author
+      requestBody:
+        description: author data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        "200":
+          description: OK
+  /publishers/{publisherId}:
+    get:
+      summary: Returns a publisher by ID.
+      parameters:
+      - name: publisherId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Publisher'
+    put:
+      summary: Update publisher information
+      parameters:
+      - name: publisherId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        description: publisher data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+        required: true
+      responses:
+        "200":
+          description: OK
+    delete:
+      summary: Delete a publisher by ID.
+      parameters:
+      - name: publisherId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /publishers/:
+    post:
+      summary: Create a new publisher
+      requestBody:
+        description: publisher data
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Publisher'
+        required: true
+      responses:
+        "200":
+          description: OK
 components:
   schemas:
     Book:
@@ -88,10 +216,14 @@ components:
           type: string
         pages:
           type: string
-        author:
-          type: string
-        publisher:
-          type: string
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        publishers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Publisher'
       example:
         copyright: "2015"
         pages: "1054"
@@ -101,3 +233,63 @@ components:
         language: ENGLISH
         title: Database System
         bookId: book01
+    Author:
+      type: object
+      properties:
+        authorId:
+          type: string
+        name:
+          type: string
+        nationality:
+          type: string
+        birth:
+          type: string
+        genere:
+          type: string
+        books:
+          $ref: '#/components/schemas/Book'
+      example:
+        books:
+          copyright: "2015"
+          pages: "1054"
+          author: Silbertzhz
+          edition: 4th
+          publisher: Mc Graw Hill
+          language: ENGLISH
+          title: Database System
+          bookId: book01
+        nationality: nationality
+        name: name
+        birth: birth
+        authorId: authorId
+        genere: genere
+    Publisher:
+      type: object
+      properties:
+        publisherId:
+          type: string
+        name:
+          type: string
+        country:
+          type: string
+        founded:
+          type: string
+        genere:
+          type: string
+        books:
+          $ref: '#/components/schemas/Book'
+      example:
+        country: country
+        publisherId: publisherId
+        books:
+          copyright: "2015"
+          pages: "1054"
+          author: Silbertzhz
+          edition: 4th
+          publisher: Mc Graw Hill
+          language: ENGLISH
+          title: Database System
+          bookId: book01
+        name: name
+        founded: founded
+        genere: genere
